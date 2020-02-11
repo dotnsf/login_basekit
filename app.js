@@ -90,18 +90,18 @@ app.get( '/login', function( req, res ){
 
 app.post( '/login', function( req, res ){
   res.contentType( 'application/json; charset=utf-8' );
-  var username = req.body.username;
+  var id = req.body.id;
   var password = req.body.password;
 
   var hash = crypto.createHash( 'sha512' );
   hash.update( password );
   var hash_password = hash.digest( 'hex' );
 
-  db.get( username, function( err, user ){
+  db.get( id, function( err, user ){
     if( err ){
       res.status( 400 );
       //res.write( JSON.stringify( { status: false, message: err }, 2, null ) );
-      res.write( JSON.stringify( { status: false, message: "wrong username and/or password." }, 2, null ) );
+      res.write( JSON.stringify( { status: false, message: "wrong id and/or password." }, 2, null ) );
       res.end();
     }else{
       if( user.password && user.password == hash_password ){
@@ -112,7 +112,7 @@ app.post( '/login', function( req, res ){
       }else{
         delete req.session.token;
         res.status( 400 );
-        res.write( JSON.stringify( { status: false, message: "wrong username and/or password." }, 2, null ) );
+        res.write( JSON.stringify( { status: false, message: "wrong id and/or password." }, 2, null ) );
         res.end();
       }
     }

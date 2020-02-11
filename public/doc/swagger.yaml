@@ -160,7 +160,7 @@ definitions:
   LoginRequest:
     type: object
     properties:
-      username:
+      id:
         type: string
         description: ユーザーID
       password:
