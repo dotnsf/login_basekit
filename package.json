@@ -1,0 +1,24 @@
+{
+  "name": "login_basekit",
+  "version": "0.0.1",
+  "description": "EJS basekit with Login feature",
+  "engines": {
+    "node": "^8.11.1",
+    "npm": "5.6.0"
+  },
+  "config": {
+    "entrypoint": "server/app.js"
+  },
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "@cloudant/cloudant": "^3.0.1",
+    "basic-auth-connect": "^1.0.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.7.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

@@ -1,0 +1,29 @@
+<style>
+.dropdown-item-checked::before{
+  position: absolute;
+  left: .4rem;
+  content: '*';
+  font-weight: 600;
+}
+</style>
+<nav class='navbar navbar-expand-md naviHeader'>
+  <a class='navbar-brand' href='/'>Logo</a>
+<% if ( user ){ %>
+  <div class='collapse navbar-collapse' id='navbar-global'>
+    <ul class='navbar-nav mr-auto'>
+    </ul>
+    <ul class='navbar-nav'>
+      <li class='dropdown'>
+        <a href='#' class='dropdown-toggle naviHeader-text' data-toggle='dropdown' role='button'><%= user.username %> <span class='caret'></span></a>
+        <ul class='dropdown-menu' role='menu'>
+          <li><a href='javascript:logout();'>Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+<% } %>
+</nav>
+<script>
+$(function(){
+});
+</script>

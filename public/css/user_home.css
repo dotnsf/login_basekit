@@ -1,0 +1,14 @@
+html, body, {
+  background-color: #ddddff;
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}
+
+.button_wrapper{
+  text-align: center;
+}
+
+#transactions_table{
+  width: inherit !important;
+}

@@ -1,0 +1,63 @@
+<%- include('./header', {}) %>
+
+<title>App name - Generator</title>
+<script>
+var token = $.cookie( "x-access-token" );
+
+$(function(){
+  getItems();
+});
+
+function getItems(){
+  $.ajax({
+    type: 'GET',
+    url: '/api/items',
+    headers: { 'x-access-token': token },
+    success: function( items ){
+      console.log( items );
+      items.forEach( item => {
+        var owner_id = '';
+        var n = item.owner.indexOf( '#' );
+        if( n > -1 ){
+          owner_id = item.owner.substring( n + 1, item.owner.length - 1 );
+        }
+        var tr = "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.body + "</td><td>" + item.timestamp + "</td></tr>";
+        $('#items_table_tbody').append( tr );
+      });
+    },
+    error: function( err ){
+      console.log( err );
+    }
+  });
+}
+</script>
+<style>
+html, body, {
+  background-color: #ddddff;
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}
+</style>
+</head>
+<body>
+
+<%- include('./nav', {}) %>
+
+<div class="container-fluid" style="padding:20px 0; font-size:8px;">
+  <table class="table table-hover table-bordered" id="items_table">
+    <thead class="table-inverse">
+      <tr>
+        <tr><th bgcolor="#ddddff" colspan="7">items</th></tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>BODY</th>
+        <th>CREATED</th>
+      </tr>
+    </thead>
+    <tbody id="items_table_tbody">
+    </tbody>
+  </table>
+</div>
+
+<%- include('./footer', {}) %>

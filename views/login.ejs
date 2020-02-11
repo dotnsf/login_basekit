@@ -1,0 +1,79 @@
+<%- include('./header', {}) %>
+
+<title>取引システム - Login</title>
+<style>
+#username, #password{
+  background-color: #f1f9ff;
+  border: 2px solid #2699fb;
+  border-radius: 10px;
+  color: #2699fb;
+  opacity: 1;
+}
+#login_title{
+  letter-spacing: 0;
+  color: #7f7f7f;
+  opacity: 1;
+}
+#login_button{
+  background-color: #2699fb;
+  border-radius: 4px;
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<%- include('./nav', {}) %>
+
+<div class="row title">
+  <div class="col-sm">
+  </div>
+  <div class="col-sm">
+  <div class="container" style="padding: 80px 0 0 0">
+    <form class="form-signin" id="login_form" method="POST" action="/login">
+    <h2 id="login_title"><!-- ログイン --></h2>
+    <input type="text" class="form-control clear" id="username" name="username" placeholder="ユーザー名" required="" autofocus=""/><br/>
+    <input type="password" class="form-control clear" id="password" name="password" placeholder="パスワード" required=""/><br/>
+<% if( message ){ %>
+    <div><small style="color: #ff0000;"><%= message %></small></div>
+<% } %>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="login_button">ログイン</button>
+    </form>
+  </div>
+  </div>
+  <div class="col-sm">
+  </div>
+</div>
+
+<script>
+$(function(){
+  $('#login_form').submit( function(){
+    var username = $('#username').val();
+    var password = $('#password').val();
+    console.log( 'username=' + username + ',password=' + password );
+
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+      data: { username: username, password: password },
+      success: function( result ){
+        console.log( result );
+
+        if( result.status ){
+          var token = result.token;    //. このトークンを使う
+          $.cookie( "x-access-token", token, { path: '/' } );
+          window.location.href = '/';
+        }
+      },
+      error: function( e0, e1, e2 ){
+        console.log( e1 );
+        console.log( e2 );
+        window.location.href = '/login?message=ログインに失敗しました。';
+      }
+    });
+    return false;
+  });
+});
+</script>
+
+<%- include('./footer', {}) %>

@@ -1,0 +1,26 @@
+<%- include('./header', {}) %>
+
+<script src="/js/user_home.js"></script>
+<link href="/css/user_home.css" rel="stylesheet"/>
+
+<title>ホーム - User</title>
+</head>
+<body>
+
+<%- include('./nav', {}) %>
+
+<div class="container" style="font-size:8px;">
+  <table class="table table-bordered table-hover" id="transactions_table" style="width:100%;">
+    <thead class="table-inverse">
+      <tr>
+        <th style="width:25%;">日付</th>
+        <th style="width:25%;">登録日時</th>
+      </tr>
+    </thead>
+    <tbody id="transactions_table_tbody">
+    </tbody>
+  </table>
+</div>
+
+
+<%- include('./footer', {}) %>
