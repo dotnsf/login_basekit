@@ -6,9 +6,6 @@
     "node": "^8.11.1",
     "npm": "5.6.0"
   },
-  "config": {
-    "entrypoint": "server/app.js"
-  },
   "scripts": {
     "start": "node app"
   },
