@@ -68,7 +68,7 @@ app.get( '/', function( req, res ){
     jwt.verify( token, settings.superSecret, function( err, user ){
       if( err ){
         res.redirect( '/login?message=Invalid token.' );
-      }else if( user && user.username && user.role ){
+      }else if( user && user._id ){
         //. '(user.role)_home' がロール毎の各ユーザーのトップページ
         res.render( user.role + '_home', { user: user, token: token } );
       }else{
